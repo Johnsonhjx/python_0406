@@ -12,6 +12,7 @@ def show_menu():
     print('3. 查找联系人')
     print('4. 删除联系人')
     print('5. 退出程序')
+    print('6. 修改联系人手机号')
 
 # 添加联系人
 def add_contact():
@@ -48,11 +49,21 @@ def delete_contact():
     else:
         print(f'没有{name}这号人')
 
+# 修改联系人手机号码
+def modify_contact():
+    name = input('请输入要修改的联系人姓名')
+    if name in contacts:
+        new_phone = input('请输入他的新号码')
+        contacts[name] = new_phone
+        print(f'已修改联系人{name} - 新号码为 {new_phone}')
+    else:
+        print('没有这号人哪')
+
 # 主循环
 
 while True:
     show_menu()
-    choice = input('请选择操作 1 - 5 ')
+    choice = input('请选择操作 1 - 6 ')
 
     if choice == '1':
         add_contact()
@@ -64,5 +75,7 @@ while True:
         delete_contact()
     elif choice == '5':
         print('感谢使用，再见')
+    elif choice == '6':
+        modify_contact()
     else:
         print('你输入有误，重新输入 1-5 之间的数字')
