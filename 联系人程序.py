@@ -1,9 +1,5 @@
 
-contacts = {
-    'name': None,
-    'phone': None,
-    'email': None
-}
+contacts = {}
 # 功能： 0. 显示菜单  1. 查看联系人 2. 添加联系人 3. 查找联系人 4. 删除联系人 5. 退出程序
 
 
@@ -16,15 +12,13 @@ def show_menu():
     print('4. 删除联系人')
     print('5. 退出程序')
     print('6. 修改联系人手机号')
-    print('7. 添加联系人的电子邮箱')
 
 # 添加联系人
 def add_contact():
     name = input('请输入联系人姓名')
     phone = input('请输入手机号码')
-    email = None
     contacts[name] = phone
-    print(f"已添加：{name} - {phone} - 邮箱: {email} ")
+    print(f"已添加：{name} - {phone} ")
 
 # 查看所有联系人
 def view_all_contacts():
@@ -32,9 +26,8 @@ def view_all_contacts():
         print('你没朋友')
     else:
         print('\n所有联系人：')
-        for name, phone, email in contacts.items():
-            print(f"{name}: {phone}, {email}")
-
+        for name, phone in contacts.items():
+            print(f"{name}: {phone}")
 
 # 查找联系人
 def search_contact():
@@ -43,7 +36,6 @@ def search_contact():
         print(f'找到联系人：{name} - {contacts[name]}')
     else:
         print(f'没有{name}这号人')
-
 
 # 删除联系人
 def delete_contact():
@@ -64,27 +56,12 @@ def modify_contact():
     else:
         print('没有这号人哪')
 
-# 添加联系人电子邮箱
-def add_email():
-    name = input('请输入联系人姓名')
-    phone = input('请输入联系人的手机号')
-    email = input('请输入联系人的电子邮箱')
-    if '@' in email and '.com' in email:
-        contacts[name] = {
-            'email': email,
-            'phone': phone
-        }
-
-        print(f"已添加 {name} 的电子邮箱：{email}")
-    else:
-        print('请输入正确的邮箱格式！')
-
 
 # 主循环
 
 while True:
     show_menu()
-    choice = input('请选择操作 1 - 7 ')
+    choice = input('请选择操作 1 - 6 ')
 
     if choice == '1':
         add_contact()
@@ -99,4 +76,4 @@ while True:
     elif choice == '6':
         modify_contact()
     else:
-        print('你输入有误，重新输入 1-7 之间的数字')
+        print('你输入有误，重新输入 1-6 之间的数字')
