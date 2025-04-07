@@ -1,6 +1,9 @@
 
-contacts = {}
-
+contacts = {
+    'name': None,
+    'phone': None,
+    'email': None
+}
 # 功能： 0. 显示菜单  1. 查看联系人 2. 添加联系人 3. 查找联系人 4. 删除联系人 5. 退出程序
 
 
@@ -19,8 +22,9 @@ def show_menu():
 def add_contact():
     name = input('请输入联系人姓名')
     phone = input('请输入手机号码')
+    email = None
     contacts[name] = phone
-    print(f"已添加：{name} - {phone}")
+    print(f"已添加：{name} - {phone} - 邮箱: {email} ")
 
 # 查看所有联系人
 def view_all_contacts():
@@ -28,8 +32,8 @@ def view_all_contacts():
         print('你没朋友')
     else:
         print('\n所有联系人：')
-        for name, phone in contacts.items():
-            print(f"{name}: {phone}")
+        for name, phone, email in contacts.items():
+            print(f"{name}: {phone}, {email}")
 
 
 # 查找联系人
@@ -63,10 +67,12 @@ def modify_contact():
 # 添加联系人电子邮箱
 def add_email():
     name = input('请输入联系人姓名')
+    phone = input('请输入联系人的手机号')
     email = input('请输入联系人的电子邮箱')
     if '@' in email and '.com' in email:
         contacts[name] = {
-            'email': email
+            'email': email,
+            'phone': phone
         }
 
         print(f"已添加 {name} 的电子邮箱：{email}")
@@ -92,7 +98,5 @@ while True:
         print('感谢使用，再见')
     elif choice == '6':
         modify_contact()
-    elif choice == '7':
-        add_email()
     else:
         print('你输入有误，重新输入 1-7 之间的数字')
