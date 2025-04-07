@@ -13,6 +13,7 @@ def show_menu():
     print('4. 删除联系人')
     print('5. 退出程序')
     print('6. 修改联系人手机号')
+    print('7. 添加联系人的电子邮箱')
 
 # 添加联系人
 def add_contact():
@@ -59,11 +60,25 @@ def modify_contact():
     else:
         print('没有这号人哪')
 
+# 添加联系人电子邮箱
+def add_email():
+    name = input('请输入联系人姓名')
+    email = input('请输入联系人的电子邮箱')
+    if '@' in email and '.com' in email:
+        contacts[name] = {
+            'email': email
+        }
+
+        print(f"已添加 {name} 的电子邮箱：{email}")
+    else:
+        print('请输入正确的邮箱格式！')
+
+
 # 主循环
 
 while True:
     show_menu()
-    choice = input('请选择操作 1 - 6 ')
+    choice = input('请选择操作 1 - 7 ')
 
     if choice == '1':
         add_contact()
@@ -77,5 +92,7 @@ while True:
         print('感谢使用，再见')
     elif choice == '6':
         modify_contact()
+    elif choice == '7':
+        add_email()
     else:
-        print('你输入有误，重新输入 1-5 之间的数字')
+        print('你输入有误，重新输入 1-7 之间的数字')
